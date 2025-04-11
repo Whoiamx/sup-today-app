@@ -1,9 +1,7 @@
 export default function Header() {
   return (
-    <header className="h-16 flex items-center justify-center  shadow-ios">
-      <h1 className="text-7xl font-semibold text-white">
-        <span className="text-green-700">What's up</span> today?
-      </h1>
+    <header className="h-16 flex items-center justify-center p-2 shadow-ios ">
+      <h1 className="text-4xl font-semibold text-black">What's up today?</h1>
     </header>
   );
 }

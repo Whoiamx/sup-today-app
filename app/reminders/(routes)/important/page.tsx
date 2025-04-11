@@ -10,7 +10,7 @@ export default function ImportantPage() {
         </h2>
       </div>
       <div>
-        <ReminderItem />
+        <ReminderItem data={[]} />
       </div>
     </div>
   );

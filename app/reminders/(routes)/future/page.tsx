@@ -10,7 +10,7 @@ export default function FuturePage() {
         </h2>
       </div>
       <div>
-        <ReminderItem />
+        <ReminderItem data={[]} />
       </div>
     </div>
   );
