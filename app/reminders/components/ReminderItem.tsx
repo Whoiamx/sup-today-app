@@ -2,6 +2,11 @@
 
 import { useState } from "react";
 
+interface PropsMap {
+  title: string;
+  description: string;
+}
+
 export const ReminderItem = () => {
   const [data, setData] = useState([]);
 
@@ -15,7 +20,7 @@ export const ReminderItem = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      {data.map((info) => (
+      {data.map((info: PropsMap[]) => (
         <div className="bg-white rounded-xl shadow-ios px-4 py-3 flex justify-between items-start transition hover:bg-gray-100">
           <div className="flex justify-around">
             <div>

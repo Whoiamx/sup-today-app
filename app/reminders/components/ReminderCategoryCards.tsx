@@ -1,6 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import { ReminderCard } from "./ReminderCard";
+import { Modal } from "@/app/components/Modal";
 
 export const ReminderCategoryCards = () => {
+  const [showModal, setShowModal] = useState(false);
+  console.log(showModal);
   return (
     <>
       <div className="min-h-screen flex items-start justify-center pt-10 bg-oliveLight">
@@ -20,9 +26,13 @@ export const ReminderCategoryCards = () => {
             route="important"
           />
 
-          <button className="col-span-2 bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 transition">
+          <button
+            onClick={() => setShowModal((prevState) => !prevState)}
+            className="col-span-2 bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 transition"
+          >
             Agregar nota
           </button>
+          {showModal && <Modal showModal={showModal} />}
         </div>
       </div>
     </>
