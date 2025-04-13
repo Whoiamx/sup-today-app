@@ -3,6 +3,7 @@
 import { useNotes } from "@/app/store/notes";
 import { ReminderItem } from "../../components/ReminderItem";
 import { useEffect } from "react";
+import { ButtonBack } from "@/app/ui/ButtonBack";
 
 export default function TodayPage() {
   const data = useNotes((state) => state.todayNotes);
@@ -13,19 +14,18 @@ export default function TodayPage() {
   }, [addTodayNotes]);
 
   return (
-    <div className="p-2">
+    <div className="flex flex-col p-2 gap-4">
       <div className="p-4">
-        <h2 className="text-black text-3xl text-center">
-          Recordatorios de hoy
+        <h2 className="text-black font-extrabold text-3xl text-center">
+          Recordatorios de <span className="text-red-500">hoy</span>
         </h2>
+      </div>
+      <div>
+        <ButtonBack />
       </div>
       <div>
         <ReminderItem data={data} />
       </div>
-
-      <button className="bg-blue-500 p-2 rounded-sm text-white">
-        Agregar Nota nueva
-      </button>
     </div>
   );
 }

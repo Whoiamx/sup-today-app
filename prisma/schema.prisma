@@ -17,6 +17,7 @@ model Reminder {
     description String
     email       String
     phone       String
+    important Boolean @default(false)
     sendEmail   Boolean  @default(true)
     sendWhatsApp Boolean @default(true)
     remindAt    DateTime

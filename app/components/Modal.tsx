@@ -47,6 +47,16 @@ export const Modal = ({ showModal }: Props) => {
 
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-600 mb-1">
+                Importante?
+              </label>
+              <input
+                type="checkbox"
+                name="important"
+                className=" border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-600 mb-1">
                 Fecha y hora
               </label>
               <input
