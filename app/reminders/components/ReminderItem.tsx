@@ -1,3 +1,8 @@
+"use client";
+
+import { useNotes } from "@/app/store/notes";
+import { useEffect } from "react";
+
 interface Props {
   data: APIResults[];
 }

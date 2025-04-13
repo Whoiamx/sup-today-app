@@ -1,17 +1,16 @@
 "use client";
-import { useState } from "react";
+
+import { useNotes } from "@/app/store/notes";
 import { ReminderItem } from "../../components/ReminderItem";
+import { useEffect } from "react";
 
 export default function TodayPage() {
-  const [data, setData] = useState([]);
+  const data = useNotes((state) => state.allNotes);
+  const addNotes = useNotes((state) => state.gettingData);
 
-  const fetchingData = async () => {
-    const res = await fetch("/api/reminder");
-
-    const data = await res.json();
-    setData(data);
-    console.log(data);
-  };
+  useEffect(() => {
+    addNotes();
+  }, [addNotes]);
 
   return (
     <div className="p-2">
@@ -24,10 +23,7 @@ export default function TodayPage() {
         <ReminderItem data={data} />
       </div>
 
-      <button
-        className="bg-blue-500 p-2 rounded-sm text-white"
-        onClick={() => fetchingData()}
-      >
+      <button className="bg-blue-500 p-2 rounded-sm text-white">
         Agregar Nota nueva
       </button>
     </div>
