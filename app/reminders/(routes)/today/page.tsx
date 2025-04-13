@@ -5,12 +5,12 @@ import { ReminderItem } from "../../components/ReminderItem";
 import { useEffect } from "react";
 
 export default function TodayPage() {
-  const data = useNotes((state) => state.allNotes);
-  const addNotes = useNotes((state) => state.gettingData);
+  const data = useNotes((state) => state.todayNotes);
+  const addTodayNotes = useNotes((state) => state.gettingTodayData);
 
   useEffect(() => {
-    addNotes();
-  }, [addNotes]);
+    addTodayNotes();
+  }, [addTodayNotes]);
 
   return (
     <div className="p-2">

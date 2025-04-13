@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { ReminderCard } from "./ReminderCard";
 import { Modal } from "@/app/components/Modal";
+import { ReminderTodayHome } from "./ReminderTodayHome";
+import { useNotes } from "@/app/store/notes";
 
 export const ReminderCategoryCards = () => {
   const [showModal, setShowModal] = useState(false);
@@ -32,9 +34,10 @@ export const ReminderCategoryCards = () => {
           >
             + Agregar nota
           </button>
-          <h3 className="text-black text-2xl">Tus recordatorios de hoy</h3>
-          <div className="col-span-2 text-black bg-white rounded-xl shadow-ios px-4 py-3 flex justify-between items-start transition hover:bg-gray-100"></div>
-
+          <h3 className="text-black text-2xl text-nowrap">
+            Tus recordatorios de <span className="text-red-500">hoy</span>
+          </h3>
+          <ReminderTodayHome />
           {showModal && <Modal showModal={showModal} />}
         </div>
       </div>
