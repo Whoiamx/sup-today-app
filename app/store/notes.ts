@@ -1,5 +1,17 @@
 import { create } from "zustand";
 
+interface ReminderNote {
+  title: string;
+  description: string;
+  email?: string;
+  phone?: string;
+  sendEmail?: boolean;
+  sendWhatsApp?: boolean;
+  remindAt: Date;
+  createdAt?: Date;
+  important: boolean;
+}
+
 interface State {
   allNotes: [];
   todayNotes: [];
@@ -7,6 +19,7 @@ interface State {
   futureNotes: [];
   gettingData: () => void;
   gettingTodayData: () => void;
+  createReminder: (note: ReminderNote) => void;
 }
 
 export const useNotes = create<State>((set) => {
@@ -31,5 +44,7 @@ export const useNotes = create<State>((set) => {
         todayNotes: dataToday,
       });
     },
+
+    createReminder: async (note: ReminderNote) => {},
   };
 });

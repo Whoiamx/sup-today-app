@@ -17,6 +17,7 @@ interface APIResults {
   sendWhatsApp: boolean;
   remindAt: Date;
   createdAt: Date;
+  important: boolean;
 }
 
 export const ReminderTodayHome = () => {
@@ -29,7 +30,7 @@ export const ReminderTodayHome = () => {
 
   return (
     <>
-      {dataForToday.map((info) => (
+      {dataForToday.map((info: any) => (
         <div
           key={info.id} // Asegurate de que `info` tenga un `id` único o usá otro identificador
           className="col-span-2 text-black bg-white rounded-xl shadow-ios px-4 py-3 flex justify-between items-center transition"

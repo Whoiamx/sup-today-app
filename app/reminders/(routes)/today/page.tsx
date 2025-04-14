@@ -4,6 +4,7 @@ import { useNotes } from "@/app/store/notes";
 import { ReminderItem } from "../../components/ReminderItem";
 import { useEffect } from "react";
 import { ButtonBack } from "@/app/ui/ButtonBack";
+import { ButtonAddNote } from "@/app/ui/ButtonAddNote";
 
 export default function TodayPage() {
   const data = useNotes((state) => state.todayNotes);
@@ -26,6 +27,7 @@ export default function TodayPage() {
       <div>
         <ReminderItem data={data} />
       </div>
+      <ButtonAddNote />
     </div>
   );
 }

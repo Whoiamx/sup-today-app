@@ -1,6 +1,6 @@
-import React from "react";
 import { ReminderItem } from "../../components/ReminderItem";
 import { ButtonBack } from "@/app/ui/ButtonBack";
+import { ButtonAddNote } from "@/app/ui/ButtonAddNote";
 
 export default function FuturePage() {
   return (
@@ -16,6 +16,7 @@ export default function FuturePage() {
       <div>
         <ReminderItem data={[]} />
       </div>
+      <ButtonAddNote />
     </div>
   );
 }

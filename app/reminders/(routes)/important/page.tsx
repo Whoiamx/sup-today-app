@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import { ReminderItem } from "../../components/ReminderItem";
 import { ButtonBack } from "@/app/ui/ButtonBack";
+import { ButtonAddNote } from "@/app/ui/ButtonAddNote";
 
 export default function ImportantPage() {
   return (
@@ -16,6 +19,7 @@ export default function ImportantPage() {
       <div>
         <ReminderItem data={[]} />
       </div>
+      <ButtonAddNote />
     </div>
   );
 }

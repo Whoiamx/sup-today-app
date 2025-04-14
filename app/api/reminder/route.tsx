@@ -9,12 +9,16 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const body = await request.json();
-  const { title, description, email, phone } = body;
+  try {
+    const body = await request.json();
+    const { title, description, important, remindAt } = body;
 
-  const setNewReminder = await prisma.reminder.create({
-    data: body,
-  });
+    const setNewReminder = await prisma.reminder.create({
+      data: body,
+    });
 
-  return NextResponse.json("Se genero correctamente el recordatorio");
+    return NextResponse.json("Se genero correctamente el recordatorio");
+  } catch (error) {
+    return NextResponse.json("Surgio un error");
+  }
 }
