@@ -31,7 +31,7 @@ export const ReminderCategoryCards = () => {
             onClick={() => setShowModal((prevState) => !prevState)}
             className="col-span-2 bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition"
           >
-            + Agregar nota
+            + Agregar recordatorio
           </button>
           <h3 className="text-black text-2xl text-nowrap">
             Tus recordatorios de <span className="text-red-500">hoy</span>
