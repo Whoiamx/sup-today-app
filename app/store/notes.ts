@@ -13,7 +13,7 @@ interface ReminderNote {
 }
 
 interface State {
-  allNotes: [];
+  allNotes: ReminderNote[];
   todayNotes: [];
   importantNotes: [];
   futureNotes: [];
@@ -45,6 +45,23 @@ export const useNotes = create<State>((set) => {
       });
     },
 
-    createReminder: async (note: ReminderNote) => {},
+    createReminder: async (note: ReminderNote) => {
+      try {
+        const res = await fetch("/api/reminder", {
+          method: "POST",
+          body: JSON.stringify(note),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const newReminder = await res.json();
+        set((state) => ({
+          allNotes: [...state.allNotes, newReminder],
+        }));
+      } catch (error) {
+        console.log(error);
+      }
+    },
   };
 });

@@ -2,10 +2,11 @@ import { FormEvent, useState } from "react";
 import { useNotes } from "../store/notes";
 
 interface Props {
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>; // Asegúrate de que sea una función de tipo setter
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowNotification: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Modal = ({ setShowModal }: Props) => {
+export const Modal = ({ setShowModal, setShowNotification }: Props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [important, setImportant] = useState(false);
@@ -13,18 +14,35 @@ export const Modal = ({ setShowModal }: Props) => {
 
   const createNewReminder = useNotes((state) => state.createReminder);
 
+  const handleNotification = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 2500);
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(remindAt);
-    // await createNewReminder({ title, description, important, remindAt });
-    setShowModal(false); // Cierra el modal después de guardar
+
+    createNewReminder({
+      title,
+      description,
+      important,
+      remindAt,
+      email: "ejemplo@ejemplo.com",
+      sendEmail: false,
+      sendWhatsApp: false,
+      phone: "11123123",
+    });
+    setShowModal(false);
+    handleNotification();
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
       <div className="bg-white rounded-2xl w-full max-w-lg p-6 shadow-lg relative">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-          Agregar nota
+          Agregar recordatorio
         </h2>
 
         <form onSubmit={handleSubmit}>

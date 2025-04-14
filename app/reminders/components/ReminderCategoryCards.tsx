@@ -4,25 +4,43 @@ import { useState } from "react";
 import { ReminderCard } from "./ReminderCard";
 import { Modal } from "@/app/components/Modal";
 import { ReminderTodayHome } from "./ReminderTodayHome";
+import { useNotes } from "../../store/notes";
+import { NotificationGood } from "@/app/ui/NotificationGood";
 
 export const ReminderCategoryCards = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+
+  const allNotes = useNotes((state) => state.allNotes.length);
+  const todayNotes = useNotes((state) => state.todayNotes.length);
+  const futureNotes = useNotes((state) => state.futureNotes.length);
+  const importantNotes = useNotes((state) => state.importantNotes.length);
 
   return (
     <>
       <div className="min-h-screen flex items-start justify-center pt-10 bg-oliveLight">
         <div className="grid grid-cols-2 gap-x-9 gap-y-7 w-[90vw] max-w-[600px]">
-          <ReminderCard title="Hoy" count={3} color="blue" route="today" />
+          <ReminderCard
+            title="Hoy"
+            count={todayNotes}
+            color="blue"
+            route="today"
+          />
           <ReminderCard
             title="Programados"
-            count={5}
+            count={futureNotes}
             color="orange"
             route="future"
           />
-          <ReminderCard title="Todo" count={12} color="gray" route="all" />
+          <ReminderCard
+            title="Todo"
+            count={allNotes}
+            color="gray"
+            route="all"
+          />
           <ReminderCard
             title="Importante"
-            count={2}
+            count={importantNotes}
             color="red"
             route="important"
           />
@@ -38,7 +56,13 @@ export const ReminderCategoryCards = () => {
           </h3>
           <ReminderTodayHome />
 
-          {showModal && <Modal setShowModal={setShowModal} />}
+          {showModal && (
+            <Modal
+              setShowModal={setShowModal}
+              setShowNotification={setShowNotification}
+            />
+          )}
+          {showNotification && <NotificationGood />}
         </div>
       </div>
     </>

@@ -5,11 +5,8 @@ import { ReminderItem } from "../../components/ReminderItem";
 import { useEffect, useState } from "react";
 import { ButtonBack } from "@/app/ui/ButtonBack";
 import { ButtonAddNote } from "@/app/ui/ButtonAddNote";
-import { Modal } from "@/app/components/Modal";
 
 export default function AllPage() {
-  const [showModal, setShowModal] = useState(false);
-
   const data = useNotes((state) => state.allNotes);
   const addNotes = useNotes((state) => state.gettingData);
 
@@ -31,7 +28,6 @@ export default function AllPage() {
         <ReminderItem data={data} />
       </div>
       <ButtonAddNote />
-      {showModal && <Modal showModal={showModal} />}
     </div>
   );
 }

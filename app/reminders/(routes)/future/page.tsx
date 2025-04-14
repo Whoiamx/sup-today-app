@@ -1,3 +1,5 @@
+"use client";
+
 import { ReminderItem } from "../../components/ReminderItem";
 import { ButtonBack } from "@/app/ui/ButtonBack";
 import { ButtonAddNote } from "@/app/ui/ButtonAddNote";
