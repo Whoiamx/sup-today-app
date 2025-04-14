@@ -1,7 +1,6 @@
 "use client";
 
-import { useNotes } from "@/app/store/notes";
-import { useEffect } from "react";
+import { FaEdit } from "react-icons/fa";
 
 interface Props {
   data: APIResults[];
@@ -36,6 +35,8 @@ export const ReminderItem = ({ data }: Props) => {
                 {new Date(info.createdAt).toLocaleDateString("es-AR")}
               </p>
             </div>
+
+            <FaEdit className="text-gray-600 hover:text-gray-800 cursor-pointer" />
           </div>
           <div className="w-5 h-5 rounded-full border-2 border-primary mt-1"></div>
         </div>

@@ -2,6 +2,7 @@
 
 import { useNotes } from "@/app/store/notes";
 import { useEffect } from "react";
+import { FaEdit } from "react-icons/fa";
 
 interface Props {
   data: APIResults[];
@@ -43,6 +44,7 @@ export const ReminderTodayHome = () => {
                 <p className="text-sm text-gray-400">
                   {new Date(info.createdAt).toLocaleDateString("es-AR")}
                 </p>
+                <FaEdit className="text-gray-600 hover:text-gray-800 cursor-pointer" />
               </div>
             </div>
           </div>
