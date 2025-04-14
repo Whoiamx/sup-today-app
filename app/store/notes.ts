@@ -20,6 +20,7 @@ interface State {
   gettingData: () => void;
   gettingTodayData: () => void;
   createReminder: (note: ReminderNote) => void;
+  gettingImportantData: () => void;
 }
 
 export const useNotes = create<State>((set) => {
@@ -42,6 +43,14 @@ export const useNotes = create<State>((set) => {
       const dataToday = await res.json();
       set({
         todayNotes: dataToday,
+      });
+    },
+    gettingImportantData: async () => {
+      const res = await fetch("/api/reminder/today");
+
+      const dataImportant = await res.json();
+      set({
+        importantNotes: dataImportant,
       });
     },
 

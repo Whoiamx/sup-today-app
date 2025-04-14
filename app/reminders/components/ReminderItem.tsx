@@ -8,15 +8,16 @@ interface Props {
 }
 
 interface APIResults {
-  id: number;
+  id?: number;
   title: string;
   description: string;
-  email: string;
-  phone: string;
-  sendEmail: boolean;
-  sendWhatsApp: boolean;
+  email?: string;
+  phone?: string;
+  sendEmail?: boolean;
+  sendWhatsApp?: boolean;
   remindAt: Date;
-  createdAt: Date;
+  createdAt?: Date;
+  important?: boolean;
 }
 
 export const ReminderItem = ({ data }: Props) => {

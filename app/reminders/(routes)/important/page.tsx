@@ -1,11 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { ReminderItem } from "../../components/ReminderItem";
 import { ButtonBack } from "@/app/ui/ButtonBack";
 import { ButtonAddNote } from "@/app/ui/ButtonAddNote";
+import { useNotes } from "@/app/store/notes";
 
 export default function ImportantPage() {
+  const getImportantReminders = useNotes((state) => state.gettingImportantData);
+  const dataImporant = useNotes((state) => state.importantNotes);
+
+  useEffect(() => {
+    getImportantReminders();
+  }, [getImportantReminders]);
+
   return (
     <div className="flex flex-col p-2 gap-4">
       <div className="p-4">
@@ -17,7 +25,7 @@ export default function ImportantPage() {
         <ButtonBack />
       </div>
       <div>
-        <ReminderItem data={[]} />
+        <ReminderItem data={dataImporant} />
       </div>
       <ButtonAddNote />
     </div>
