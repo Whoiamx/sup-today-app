@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 interface ReminderNote {
+  id?: number;
   title: string;
   description: string;
   email?: string;
@@ -21,6 +22,7 @@ interface State {
   gettingTodayData: () => void;
   createReminder: (note: ReminderNote) => void;
   gettingImportantData: () => void;
+  updateReminder: (id: number, updateData: ReminderNote) => void;
 }
 
 export const useNotes = create<State>((set) => {
@@ -71,6 +73,14 @@ export const useNotes = create<State>((set) => {
       } catch (error) {
         console.log(error);
       }
+    },
+
+    updateReminder: (id, updatedData) => {
+      set((state) => ({
+        allNotes: state.allNotes.map((note) =>
+          note.id === id ? { ...note, ...updatedData } : note
+        ),
+      }));
     },
   };
 });
