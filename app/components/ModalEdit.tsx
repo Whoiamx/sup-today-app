@@ -1,7 +1,8 @@
-import { FormEvent, useState } from "react";
-import { useNotes } from "../store/notes";
+interface Props {
+  setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export const ModalEdit = () => {
+export const ModalEdit = ({ setShowEditModal }: Props) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
       <div className="bg-white rounded-2xl w-full max-w-lg p-6 shadow-lg relative">
@@ -58,6 +59,7 @@ export const ModalEdit = () => {
             <button
               type="button"
               className="px-4 py-2 text-gray-600 rounded-lg hover:bg-gray-100 transition"
+              onClick={() => setShowEditModal(false)}
             >
               Cancelar
             </button>
@@ -70,7 +72,10 @@ export const ModalEdit = () => {
           </div>
         </form>
 
-        <button className="absolute top-3 right-4 text-gray-400 hover:text-gray-600 text-xl">
+        <button
+          onClick={() => setShowEditModal(false)}
+          className="absolute top-3 right-4 text-gray-400 hover:text-gray-600 text-xl"
+        >
           &times;
         </button>
       </div>

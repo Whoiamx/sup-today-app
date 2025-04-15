@@ -6,6 +6,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "What's up today?",
   description: "Nunca mas te olvides tus pendientes del dia",
+  icons: {
+    icon: "./favicon.ico",
+  },
 };
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });

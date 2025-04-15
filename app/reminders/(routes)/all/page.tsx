@@ -2,7 +2,7 @@
 
 import { useNotes } from "@/app/store/notes";
 import { ReminderItem } from "../../components/ReminderItem";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ButtonBack } from "@/app/ui/ButtonBack";
 import { ButtonAddNote } from "@/app/ui/ButtonAddNote";
 
