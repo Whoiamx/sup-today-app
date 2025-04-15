@@ -27,10 +27,10 @@ export const ReminderCategoryCards = () => {
             route="today"
           />
           <ReminderCard
-            title="Programados"
-            count={futureNotes}
-            color="orange"
-            route="future"
+            title="Importante"
+            count={importantNotes}
+            color="red"
+            route="important"
           />
           <ReminderCard
             title="Todo"
@@ -38,11 +38,12 @@ export const ReminderCategoryCards = () => {
             color="gray"
             route="all"
           />
+
           <ReminderCard
-            title="Importante"
-            count={importantNotes}
-            color="red"
-            route="important"
+            title="Terminado"
+            count={futureNotes}
+            color="orange"
+            route="done"
           />
 
           <button

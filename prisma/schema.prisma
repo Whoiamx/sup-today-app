@@ -22,4 +22,5 @@ model Reminder {
     sendWhatsApp Boolean @default(true)
     remindAt    DateTime
     createdAt   DateTime @default(now())
+    done Boolean @default(false)
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { JSX } from "react";
-import { FaBell, FaRegCalendarTimes } from "react-icons/fa";
+import { FaBell, FaCalendarCheck, FaRegCalendarTimes } from "react-icons/fa";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { LuGalleryHorizontalEnd } from "react-icons/lu";
 import { MdLabelImportantOutline } from "react-icons/md";
@@ -28,10 +28,9 @@ const getIcon = (title: string) => {
     Hoy: <IoCalendarNumberOutline className="text-blue-500" />,
     Importante: <MdLabelImportantOutline className="text-orange-500" />,
     Todo: <LuGalleryHorizontalEnd className="text-amber-700" />,
-    Futuro: <FaRegCalendarTimes />,
   };
 
-  return icons[title] || <FaBell />;
+  return icons[title] || <FaCalendarCheck />;
 };
 export const ReminderCard = ({ title, color, count, route }: Props) => {
   return (

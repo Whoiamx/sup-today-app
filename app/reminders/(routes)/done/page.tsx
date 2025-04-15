@@ -19,7 +19,7 @@ export default function FuturePage() {
       <div className="p-4">
         <h2 className="text-black font-semibold text-3xl text-center">
           Recordatorios{" "}
-          <span className="font-semibold text-green-500">programados</span>
+          <span className="font-semibold text-green-500">terminados</span>
         </h2>
       </div>
       <div>
