@@ -1,6 +1,7 @@
 "use client";
 
 import { FaEdit } from "react-icons/fa";
+import { MdLabelImportantOutline } from "react-icons/md";
 
 interface Props {
   data: APIResults[];
@@ -29,6 +30,7 @@ export const ReminderItem = ({ data }: Props) => {
         >
           <div className="flex flex-col gap-5">
             <p className="text-xl font-semibold text-black">{info.title} </p>
+
             <div>
               <p className="text-sm text-gray-400">{info.description}</p>
               <p className="text-sm text-gray-400">
@@ -38,7 +40,10 @@ export const ReminderItem = ({ data }: Props) => {
 
             <FaEdit className="text-gray-600 hover:text-gray-800 cursor-pointer" />
           </div>
-          <div className="w-5 h-5 rounded-full border-2 border-primary mt-1"></div>
+          <div className="flex gap-5 justify-center items-center">
+            <MdLabelImportantOutline className="text-orange-500" />
+            <div className="w-5 h-5 rounded-full border-2 border-primary mt-1 cursor-pointer"></div>
+          </div>
         </div>
       ))}
     </div>

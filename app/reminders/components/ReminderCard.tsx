@@ -25,9 +25,9 @@ const getColorClass = (color: string) => {
 
 const getIcon = (title: string) => {
   const icons: Record<string, JSX.Element> = {
-    Hoy: <IoCalendarNumberOutline />,
-    Importante: <MdLabelImportantOutline />,
-    Todo: <LuGalleryHorizontalEnd />,
+    Hoy: <IoCalendarNumberOutline className="text-blue-500" />,
+    Importante: <MdLabelImportantOutline className="text-orange-500" />,
+    Todo: <LuGalleryHorizontalEnd className="text-amber-700" />,
     Futuro: <FaRegCalendarTimes />,
   };
 

@@ -48,7 +48,7 @@ export const ReminderTodayHome = () => {
               </div>
             </div>
           </div>
-          <div className="w-5 h-5 rounded-full border-2 border-primary mt-1"></div>
+          <div className="w-5 h-5 rounded-full border-2 border-primary mt-1 cursor-pointer"></div>
         </div>
       ))}
     </>

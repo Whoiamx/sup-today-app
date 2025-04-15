@@ -1,12 +1,10 @@
 import { prisma } from "@/app/lib/prisma";
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 const now = new Date();
 
-// Obtenés el inicio del día (00:00:00)
 const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-// Obtenés el final del día (23:59:59.999)
 const endOfToday = new Date(
   now.getFullYear(),
   now.getMonth(),
@@ -20,7 +18,7 @@ const endOfToday = new Date(
 export async function GET(request: Request) {
   const remindersToday = await prisma.reminder.findMany({
     where: {
-      createdAt: {
+      remindAt: {
         gte: startOfToday,
         lte: endOfToday,
       },
