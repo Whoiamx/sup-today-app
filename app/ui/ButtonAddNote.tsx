@@ -13,7 +13,9 @@ export const ButtonAddNote = () => {
         + Agregar Recordatorio
       </button>
 
-      {showModal && <Modal setShowModal={setShowModal} />}
+      {showModal && (
+        <Modal setShowModal={setShowModal} setShowNotification={[]} />
+      )}
     </div>
   );
 };

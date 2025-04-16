@@ -3,6 +3,9 @@ import { NextResponse, NextRequest } from "next/server";
 
 export async function GET(request: Request) {
   const reminders = await prisma.reminder.findMany({
+    where: {
+      done: false,
+    },
     orderBy: { id: "asc" },
   });
   return NextResponse.json(reminders);

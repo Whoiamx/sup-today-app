@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { ReminderItem } from "../../components/ReminderItem";
 import { ButtonBack } from "@/app/ui/ButtonBack";
 import { ButtonAddNote } from "@/app/ui/ButtonAddNote";

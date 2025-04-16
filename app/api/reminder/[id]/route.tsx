@@ -17,7 +17,7 @@ export async function GET(request: Request, { params }: Params) {
 
 export async function PUT(request: Request, { params }: Params) {
   try {
-    const { title, description, important } = await request.json();
+    const { title, description, important, done } = await request.json();
 
     const updateReminder = await prisma.reminder.update({
       where: {
@@ -27,6 +27,7 @@ export async function PUT(request: Request, { params }: Params) {
         title,
         description,
         important,
+        done,
       },
     });
 

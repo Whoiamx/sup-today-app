@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { ModalEdit } from "../components/ModalEdit";
-import { APIResults } from "../reminders/components/ReminderItem";
+import { APIResults } from "../interfaces/type";
 
 interface Props {
   id?: number;

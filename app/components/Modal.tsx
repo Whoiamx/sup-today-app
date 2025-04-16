@@ -3,10 +3,9 @@ import { useNotes } from "../store/notes";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowNotification: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Modal = ({ setShowModal, setShowNotification }: Props) => {
+export const Modal = ({ setShowModal }: Props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [important, setImportant] = useState(false);
@@ -14,12 +13,13 @@ export const Modal = ({ setShowModal, setShowNotification }: Props) => {
 
   const createNewReminder = useNotes((state) => state.createReminder);
 
-  const handleNotification = () => {
-    setShowNotification(true);
-    setTimeout(() => {
-      setShowNotification(false);
-    }, 2500);
-  };
+  //TODO: AJUSTAR LA NOTIFICACION QUE APARECE AL AGREGAR UN NUEVO RECORDATORIO
+  // const handleNotification = () => {
+  //   setShowNotification(true);
+  //   setTimeout(() => {
+  //     setShowNotification(false);
+  //   }, 2500);
+  // };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -84,7 +84,7 @@ export const Modal = ({ setShowModal, setShowNotification }: Props) => {
 
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600 mb-1">
-              Fecha y hora
+              Recordamelo
             </label>
             <input
               type="datetime-local"

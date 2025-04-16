@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNotes } from "../store/notes";
-import { APIResults } from "../reminders/components/ReminderItem";
+import { APIResults } from "../interfaces/type";
 
 interface Props {
   setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;

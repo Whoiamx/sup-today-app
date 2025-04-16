@@ -1,17 +1,5 @@
 import { create } from "zustand";
-
-interface ReminderNote {
-  id?: number;
-  title: string;
-  description: string;
-  email?: string;
-  phone?: string;
-  sendEmail?: boolean;
-  sendWhatsApp?: boolean;
-  remindAt: Date;
-  createdAt?: Date;
-  important: boolean;
-}
+import { ReminderNote } from "../interfaces/type";
 
 interface State {
   allNotes: ReminderNote[];
@@ -61,7 +49,7 @@ export const useNotes = create<State>((set) => {
     },
     gettingImportantData: async () => {
       const res = await fetch("/api/reminder/important", {
-        cache: "no-store", // 🔥 evita la caché
+        cache: "no-store",
       });
       const dataImportant = await res.json();
       set({

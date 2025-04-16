@@ -1,27 +1,16 @@
+import { APIResults } from "@/app/interfaces/type";
+import { useNotes } from "@/app/store/notes";
 import { ButtonEdit } from "@/app/ui/ButtonEdit";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
 interface Props {
   data: APIResults[];
 }
 
-export interface APIResults {
-  id?: number;
-  title: string;
-  description: string;
-  email?: string;
-  phone?: string;
-  sendEmail?: boolean;
-  sendWhatsApp?: boolean;
-  remindAt: Date;
-  createdAt?: Date;
-  important?: boolean;
-  done?: boolean;
-}
-
 export const ReminderItem = ({ data }: Props) => {
   const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
+  const editReminder = useNotes((state) => state.updateReminder);
 
   const handleCheckButton = (id?: number) => {
     if (id === undefined) return;
@@ -31,6 +20,9 @@ export const ReminderItem = ({ data }: Props) => {
       [id]: !prev[id],
     }));
   };
+
+  //TODO: FUNCION QUE DE COMO TERMINADA LA TAREA/RECORDATORIO
+  const handleDoneTasks = async (e: FormEvent<HTMLFormElement>) => {};
 
   return (
     <div className="flex flex-col gap-2">

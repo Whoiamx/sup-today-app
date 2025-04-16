@@ -7,7 +7,7 @@ import { useNotes } from "@/app/store/notes";
 import { useEffect } from "react";
 
 export default function FuturePage() {
-  const data = useNotes((state) => state.allNotes);
+  const data = useNotes((state) => state.doneNotes);
   const addNotes = useNotes((state) => state.gettingData);
 
   useEffect(() => {

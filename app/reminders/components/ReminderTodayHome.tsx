@@ -1,9 +1,10 @@
 "use client";
 
+import { APIResults } from "@/app/interfaces/type";
 import { useNotes } from "@/app/store/notes";
-import { ButtonEdit } from "@/app/ui/ButtonEdit";
+
 import { useEffect, useState } from "react";
-import { APIResults } from "./ReminderItem";
+
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
 interface Props {

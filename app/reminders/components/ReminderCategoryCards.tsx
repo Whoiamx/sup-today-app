@@ -8,13 +8,11 @@ import { useNotes } from "../../store/notes";
 import { NotificationGood } from "@/app/ui/NotificationGood";
 
 export const ReminderCategoryCards = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
-
   const allNotes = useNotes((state) => state.allNotes.length);
   const todayNotes = useNotes((state) => state.todayNotes.length);
   const doneNotes = useNotes((state) => state.doneNotes.length);
   const importantNotes = useNotes((state) => state.importantNotes.length);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -57,13 +55,7 @@ export const ReminderCategoryCards = () => {
           </h3>
           <ReminderTodayHome />
 
-          {showModal && (
-            <Modal
-              setShowModal={setShowModal}
-              setShowNotification={setShowNotification}
-            />
-          )}
-          {showNotification && <NotificationGood />}
+          {showModal && <Modal setShowModal={setShowModal} />}
         </div>
       </div>
     </>
