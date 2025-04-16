@@ -59,7 +59,7 @@ export const ReminderTodayHome = () => {
                 >
                   {new Date(info.createdAt).toLocaleDateString("es-AR")}
                 </p>
-                <ButtonEdit />
+                <ButtonEdit data={dataForToday} />
               </div>
             </div>
           </div>
