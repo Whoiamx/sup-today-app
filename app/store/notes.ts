@@ -17,12 +17,13 @@ interface State {
   allNotes: ReminderNote[];
   todayNotes: [];
   importantNotes: [];
-  futureNotes: [];
+  doneNotes: [];
   gettingData: () => void;
   gettingTodayData: () => void;
   createReminder: (note: ReminderNote) => void;
   gettingImportantData: () => void;
   updateReminder: (id: number, updateData: ReminderNote) => void;
+  gettingOneReminderData: (id: number) => void;
 }
 
 export const useNotes = create<State>((set) => {
@@ -30,7 +31,7 @@ export const useNotes = create<State>((set) => {
     allNotes: [],
     todayNotes: [],
     importantNotes: [],
-    futureNotes: [],
+    doneNotes: [],
     gettingData: async () => {
       const res = await fetch("/api/reminder");
 
@@ -39,6 +40,17 @@ export const useNotes = create<State>((set) => {
         allNotes: data,
       });
     },
+
+    gettingOneReminderData: async (id: number) => {
+      try {
+        const res = await fetch(`/api/reminder/${id}`);
+        const data = await res.json();
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
     gettingTodayData: async () => {
       const res = await fetch("/api/reminder/today");
 
@@ -48,8 +60,9 @@ export const useNotes = create<State>((set) => {
       });
     },
     gettingImportantData: async () => {
-      const res = await fetch("/api/reminder/today");
-
+      const res = await fetch("/api/reminder/important", {
+        cache: "no-store", // 🔥 evita la caché
+      });
       const dataImportant = await res.json();
       set({
         importantNotes: dataImportant,
@@ -75,12 +88,24 @@ export const useNotes = create<State>((set) => {
       }
     },
 
-    updateReminder: (id, updatedData) => {
-      set((state) => ({
-        allNotes: state.allNotes.map((note) =>
-          note.id === id ? { ...note, ...updatedData } : note
-        ),
-      }));
+    updateReminder: async (id, updatedData) => {
+      try {
+        const res = await fetch(`/api/reminder/${id}`, {
+          method: "PUT",
+          body: JSON.stringify(updatedData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        set((state) => ({
+          allNotes: state.allNotes.map((note) =>
+            note.id === id ? { ...note, ...updatedData } : note
+          ),
+        }));
+      } catch (error) {
+        console.log(error);
+      }
     },
   };
 });

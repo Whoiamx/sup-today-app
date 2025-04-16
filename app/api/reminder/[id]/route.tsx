@@ -6,39 +6,32 @@ interface Params {
 }
 
 export async function GET(request: Request, { params }: Params) {
-  return NextResponse.json("Hola");
-}
-export async function DELETE(request: Request, { params }: Params) {
-  try {
-    const deletedNote = await prisma.reminder.delete({
-      where: {
-        id: Number(params.id),
-      },
-    });
-    if (!deletedNote)
-      return NextResponse.json({ message: "Note not found" }, { status: 404 });
+  const infoReminder = await prisma.reminder.findMany({
+    where: {
+      id: Number(params.id),
+    },
+  });
 
-    return NextResponse.json(deletedNote);
-  } catch (error) {
-    console.log(error);
-
-    return NextResponse.json(error);
-  }
+  return NextResponse.json(infoReminder);
 }
 
 export async function PUT(request: Request, { params }: Params) {
   try {
-    const { title, content } = await request.json();
+    const { title, description, important } = await request.json();
 
-    const updatedNote = await prisma.reminder.update({
+    const updateReminder = await prisma.reminder.update({
       where: {
         id: Number(params.id),
       },
-      data: {},
+      data: {
+        title,
+        description,
+        important,
+      },
     });
 
-    return NextResponse.json(updatedNote);
+    return NextResponse.json("Se genero correctamente el recordatorio");
   } catch (error) {
-    return NextResponse.json(error);
+    return NextResponse.json("Surgio un error");
   }
 }

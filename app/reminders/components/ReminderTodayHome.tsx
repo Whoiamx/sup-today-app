@@ -3,22 +3,10 @@
 import { useNotes } from "@/app/store/notes";
 import { ButtonEdit } from "@/app/ui/ButtonEdit";
 import { useEffect, useState } from "react";
+import { APIResults } from "./ReminderItem";
 
 interface Props {
   data: APIResults[];
-}
-
-interface APIResults {
-  id: number;
-  title: string;
-  description: string;
-  email: string;
-  phone: string;
-  sendEmail: boolean;
-  sendWhatsApp: boolean;
-  remindAt: Date;
-  createdAt: Date;
-  important: boolean;
 }
 
 export const ReminderTodayHome = () => {

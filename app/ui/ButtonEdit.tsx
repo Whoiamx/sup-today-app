@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { ModalEdit } from "../components/ModalEdit";
+import { APIResults } from "../reminders/components/ReminderItem";
 
-export const ButtonEdit = () => {
+interface Props {
+  id?: number;
+  data: APIResults[];
+}
+
+export const ButtonEdit = ({ id, data }: Props) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   const handleClickModalEdit = () => {
@@ -15,7 +21,9 @@ export const ButtonEdit = () => {
         onClick={handleClickModalEdit}
         className="text-gray-600 hover:text-gray-800 cursor-pointer"
       />
-      {showEditModal && <ModalEdit setShowEditModal={setShowEditModal} />}
+      {showEditModal && (
+        <ModalEdit setShowEditModal={setShowEditModal} id={id} data={data} />
+      )}
     </>
   );
 };

@@ -13,7 +13,7 @@ export const ReminderCategoryCards = () => {
 
   const allNotes = useNotes((state) => state.allNotes.length);
   const todayNotes = useNotes((state) => state.todayNotes.length);
-  const futureNotes = useNotes((state) => state.futureNotes.length);
+  const doneNotes = useNotes((state) => state.doneNotes.length);
   const importantNotes = useNotes((state) => state.importantNotes.length);
 
   return (
@@ -41,7 +41,7 @@ export const ReminderCategoryCards = () => {
 
           <ReminderCard
             title="Terminado"
-            count={futureNotes}
+            count={doneNotes}
             color="orange"
             route="done"
           />

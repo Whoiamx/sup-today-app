@@ -5,7 +5,7 @@ interface Props {
   data: APIResults[];
 }
 
-interface APIResults {
+export interface APIResults {
   id?: number;
   title: string;
   description: string;
@@ -16,6 +16,7 @@ interface APIResults {
   remindAt: Date;
   createdAt?: Date;
   important?: boolean;
+  done?: boolean;
 }
 
 export const ReminderItem = ({ data }: Props) => {
@@ -26,7 +27,7 @@ export const ReminderItem = ({ data }: Props) => {
 
     setCheckedItems((prev) => ({
       ...prev,
-      [id]: !prev[id], // alterna entre true y false
+      [id]: !prev[id],
     }));
   };
 
@@ -65,7 +66,7 @@ export const ReminderItem = ({ data }: Props) => {
               </p>
             </div>
 
-            <ButtonEdit />
+            <ButtonEdit id={info.id} data={data} />
           </div>
           <div className="flex gap-5 justify-center items-center">
             <div

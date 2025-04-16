@@ -3,12 +3,13 @@ import { NextResponse, NextRequest } from "next/server";
 
 export async function GET(request: Request) {
   try {
-    const remindersImportant = await prisma.reminder.findMany({
+    const remindersDone = await prisma.reminder.findMany({
       where: {
-        important: true,
+        done: true,
       },
+      orderBy: { id: "asc" },
     });
-    return NextResponse.json(remindersImportant);
+    return NextResponse.json(remindersDone);
   } catch (error) {
     return NextResponse.json(error);
   }

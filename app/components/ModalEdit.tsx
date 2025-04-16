@@ -1,8 +1,44 @@
+import { FormEvent, useEffect, useState } from "react";
+import { useNotes } from "../store/notes";
+import { APIResults } from "../reminders/components/ReminderItem";
+
 interface Props {
   setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
+  id?: number;
+  data: APIResults[];
 }
 
-export const ModalEdit = ({ setShowEditModal }: Props) => {
+export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
+  useEffect(() => {
+    const reminder = data.find((item) => item.id === id);
+    if (reminder) {
+      setSecondTitle(reminder.title);
+      setSecondDescription(reminder.description);
+      setIsImportantNow(reminder.important);
+      setNewRemindAt(reminder.remindAt);
+    }
+  }, [id, data]);
+
+  const [secondTitle, setSecondTitle] = useState("");
+  const [secondDescription, setSecondDescription] = useState("");
+  const [isImportantNow, setIsImportantNow] = useState();
+  const [newremindAt, setNewRemindAt] = useState(new Date());
+
+  const editReminder = useNotes((state) => state.updateReminder);
+
+  const handleEdit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(id);
+    editReminder(id, {
+      title: secondTitle,
+      description: secondDescription,
+      remindAt: newremindAt,
+      important: isImportantNow,
+    });
+
+    setShowEditModal(false);
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
       <div className="bg-white rounded-2xl w-full max-w-lg p-6 shadow-lg relative">
@@ -10,7 +46,7 @@ export const ModalEdit = ({ setShowEditModal }: Props) => {
           Editar recordatorio
         </h2>
 
-        <form>
+        <form onSubmit={handleEdit}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600 mb-1">
               Título
@@ -18,7 +54,9 @@ export const ModalEdit = ({ setShowEditModal }: Props) => {
             <input
               type="text"
               name="title"
+              value={secondTitle}
               className="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={(e) => setSecondTitle(e.target.value)}
             />
           </div>
 
@@ -29,7 +67,9 @@ export const ModalEdit = ({ setShowEditModal }: Props) => {
             <textarea
               name="description"
               rows={3}
+              value={secondDescription}
               className="w-full border border-gray-300 rounded-xl p-3 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={(e) => setSecondDescription(e.target.value)}
             ></textarea>
           </div>
 
@@ -40,7 +80,9 @@ export const ModalEdit = ({ setShowEditModal }: Props) => {
             <input
               type="checkbox"
               name="important"
+              checked={isImportantNow}
               className="border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2"
+              onChange={(e) => setIsImportantNow(e.target.checked)}
             />
           </div>
 
@@ -51,7 +93,13 @@ export const ModalEdit = ({ setShowEditModal }: Props) => {
             <input
               type="datetime-local"
               name="remindAt"
+              value={
+                newremindAt
+                  ? new Date(newremindAt).toISOString().slice(0, 16)
+                  : ""
+              }
               className="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={(e) => setNewRemindAt(new Date(e.target.value))}
             />
           </div>
 

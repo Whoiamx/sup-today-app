@@ -11,7 +11,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { title, description, important, remindAt } = body;
+    const { title, description, important } = body;
 
     const setNewReminder = await prisma.reminder.create({
       data: body,
