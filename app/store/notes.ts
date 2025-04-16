@@ -12,6 +12,7 @@ interface State {
   gettingImportantData: () => void;
   updateReminder: (id: number, updateData: ReminderNote) => void;
   gettingOneReminderData: (id: number) => void;
+  deleteOneReminder: (id: number) => void;
 }
 
 export const useNotes = create<State>((set) => {
@@ -90,6 +91,20 @@ export const useNotes = create<State>((set) => {
           allNotes: state.allNotes.map((note) =>
             note.id === id ? { ...note, ...updatedData } : note
           ),
+        }));
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    deleteOneReminder: async (id: number) => {
+      try {
+        const res = await fetch(`/api/reminder/${id}`, {
+          method: "DELETE",
+        });
+
+        set((state) => ({
+          allNotes: state.allNotes.filter((note) => note.id !== id),
         }));
       } catch (error) {
         console.log(error);

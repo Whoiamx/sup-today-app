@@ -36,3 +36,24 @@ export async function PUT(request: Request, { params }: Params) {
     return NextResponse.json("Surgio un error");
   }
 }
+export async function DELETE(request: Request, { params }: Params) {
+  try {
+    const deleteReminder = await prisma.reminder.deleteMany({
+      where: {
+        id: Number(params.id),
+      },
+    });
+
+    return NextResponse.json(
+      {
+        message: `Se elimino el registro correctamente`,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Surgio un error terrible" },
+      { status: 500 }
+    );
+  }
+}
