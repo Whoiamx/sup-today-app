@@ -4,6 +4,7 @@ import { useNotes } from "@/app/store/notes";
 import { ButtonEdit } from "@/app/ui/ButtonEdit";
 import { useEffect, useState } from "react";
 import { APIResults } from "./ReminderItem";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 interface Props {
   data: APIResults[];
@@ -59,18 +60,24 @@ export const ReminderTodayHome = () => {
                 >
                   {new Date(info.createdAt).toLocaleDateString("es-AR")}
                 </p>
-                <ButtonEdit data={dataForToday} />
               </div>
             </div>
           </div>
-          <div
-            onClick={() => handleCheckButton(info.id)}
-            className={`w-5 h-5 rounded-full border-2 mt-1 cursor-pointer ${
-              checkedItems[info.id!]
-                ? "bg-blue-600 border-primary"
-                : "border-primary"
-            }`}
-          ></div>
+          <div className="flex gap-5 justify-center items-center">
+            <div className="flex gap-2 items-center justify-center">
+              {checkedItems[info.id!] && (
+                <RiDeleteBin6Fill className="cursor-pointer" />
+              )}
+              <div
+                onClick={() => handleCheckButton(info.id)}
+                className={`w-5 h-5 rounded-full border-2 mt-1 cursor-pointer ${
+                  checkedItems[info.id!]
+                    ? "bg-blue-600 border-primary"
+                    : "border-primary"
+                }`}
+              ></div>
+            </div>
+          </div>
         </div>
       ))}
     </>

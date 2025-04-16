@@ -1,5 +1,6 @@
 import { ButtonEdit } from "@/app/ui/ButtonEdit";
 import { useState } from "react";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 interface Props {
   data: APIResults[];
@@ -60,8 +61,8 @@ export const ReminderItem = ({ data }: Props) => {
                   checkedItems[info.id!] ? "line-through" : null
                 }`}
               >
-                {info.createdAt
-                  ? new Date(info.createdAt).toLocaleDateString("es-AR")
+                {info.remindAt
+                  ? new Date(info.remindAt).toLocaleDateString("es-AR")
                   : ""}
               </p>
             </div>
@@ -69,14 +70,19 @@ export const ReminderItem = ({ data }: Props) => {
             <ButtonEdit id={info.id} data={data} />
           </div>
           <div className="flex gap-5 justify-center items-center">
-            <div
-              onClick={() => handleCheckButton(info.id)}
-              className={`w-5 h-5 rounded-full border-2 mt-1 cursor-pointer ${
-                checkedItems[info.id!]
-                  ? "bg-blue-600 border-primary"
-                  : "border-primary"
-              }`}
-            ></div>
+            <div className="flex gap-2 items-center justify-center">
+              {checkedItems[info.id!] && (
+                <RiDeleteBin6Fill className="cursor-pointer" />
+              )}
+              <div
+                onClick={() => handleCheckButton(info.id)}
+                className={`w-5 h-5 rounded-full border-2 mt-1 cursor-pointer ${
+                  checkedItems[info.id!]
+                    ? "bg-blue-600 border-primary"
+                    : "border-primary"
+                }`}
+              ></div>
+            </div>
           </div>
         </div>
       ))}

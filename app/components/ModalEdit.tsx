@@ -88,7 +88,7 @@ export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
 
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600 mb-1">
-              Fecha y hora
+              Recordamelo
             </label>
             <input
               type="datetime-local"
