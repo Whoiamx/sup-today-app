@@ -8,11 +8,11 @@ import { useEffect } from "react";
 
 export default function FuturePage() {
   const data = useNotes((state) => state.doneNotes);
-  const addNotes = useNotes((state) => state.gettingData);
+  const getDoneData = useNotes((state) => state.gettingDoneData);
 
   useEffect(() => {
-    addNotes();
-  }, [addNotes]);
+    getDoneData();
+  }, [getDoneData]);
 
   return (
     <div className="flex flex-col p-2 gap-4">

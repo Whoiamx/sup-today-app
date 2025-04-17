@@ -7,7 +7,6 @@ export async function GET(request: Request) {
       where: {
         done: true,
       },
-      orderBy: { id: "asc" },
     });
     return NextResponse.json(remindersDone);
   } catch (error) {

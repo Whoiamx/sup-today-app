@@ -2,10 +2,7 @@
 
 import { APIResults } from "@/app/interfaces/type";
 import { useNotes } from "@/app/store/notes";
-
 import { useEffect, useState } from "react";
-
-import { RiDeleteBin6Fill } from "react-icons/ri";
 
 interface Props {
   data: APIResults[];
@@ -13,6 +10,8 @@ interface Props {
 
 export const ReminderTodayHome = () => {
   const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
+  const addTodayNotes = useNotes((state) => state.gettingTodayData);
+  const dataForToday = useNotes((state) => state.todayNotes);
 
   const handleCheckButton = (id?: number) => {
     if (id === undefined) return;
@@ -22,9 +21,6 @@ export const ReminderTodayHome = () => {
       [id]: !prev[id],
     }));
   };
-
-  const addTodayNotes = useNotes((state) => state.gettingTodayData);
-  const dataForToday = useNotes((state) => state.todayNotes);
 
   useEffect(() => {
     addTodayNotes();
@@ -66,9 +62,6 @@ export const ReminderTodayHome = () => {
           </div>
           <div className="flex gap-5 justify-center items-center">
             <div className="flex gap-2 items-center justify-center">
-              {checkedItems[info.id!] && (
-                <RiDeleteBin6Fill className="cursor-pointer" />
-              )}
               <div
                 onClick={() => handleCheckButton(info.id)}
                 className={`w-5 h-5 rounded-full border-2 mt-1 cursor-pointer ${

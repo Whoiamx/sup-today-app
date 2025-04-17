@@ -39,7 +39,7 @@ export const ReminderItem = ({ data }: Props) => {
           <div className="flex flex-col gap-5">
             <RiDeleteBin6Fill
               onClick={() => handleDeleteReminder(info.id)}
-              className="text-xs cursor-pointer"
+              className="text-xs cursor-pointer text-red-500"
             />
             <p
               className={`text-xl font-semibold text-black ${

@@ -13,6 +13,7 @@ interface State {
   updateReminder: (id: number, updateData: ReminderNote) => void;
   gettingOneReminderData: (id: number) => void;
   deleteOneReminder: (id: number) => void;
+  gettingDoneData: () => void;
 }
 
 export const useNotes = create<State>((set) => {
@@ -55,6 +56,15 @@ export const useNotes = create<State>((set) => {
       const dataImportant = await res.json();
       set({
         importantNotes: dataImportant,
+      });
+    },
+
+    gettingDoneData: async () => {
+      const res = await fetch("/api/reminder/done");
+
+      const doneData = await res.json();
+      set({
+        doneNotes: doneData,
       });
     },
 
