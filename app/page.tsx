@@ -7,6 +7,7 @@ import { NotificationGood } from "./ui/NotificationGood";
 
 export default function Home() {
   const [showNotification, setShowNotification] = useState(false);
+  const [showEditNotification, setShowEditNotification] = useState(false);
 
   return (
     <>

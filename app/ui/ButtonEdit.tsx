@@ -4,7 +4,7 @@ import { ModalEdit } from "../components/ModalEdit";
 import { APIResults } from "../interfaces/type";
 
 interface Props {
-  id?: number;
+  id: number;
   data: APIResults[];
 }
 

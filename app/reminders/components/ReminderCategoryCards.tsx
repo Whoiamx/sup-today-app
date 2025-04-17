@@ -57,7 +57,7 @@ export const ReminderCategoryCards = ({ setShowNotification }: Props) => {
             </button>
           </div>
 
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col gap-6">
             <h3 className="text-black text-2xl sm:text-3xl font-semibold whitespace-nowrap">
               Tus recordatorios de <span className="text-red-500">hoy</span>
             </h3>

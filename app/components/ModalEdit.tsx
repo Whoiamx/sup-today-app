@@ -5,7 +5,7 @@ import { NotificationValidation } from "../ui/NotificationValidation";
 
 interface Props {
   setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
-  id?: number;
+  id: number;
   data: APIResults[];
 }
 
@@ -42,12 +42,6 @@ export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
     if (!secondDescription.trim()) {
       setShowError(true);
       setErrorMessage("La descripción del recordatorio es obligatoria.");
-      return;
-    }
-
-    if (isNaN(newremindAt.getTime())) {
-      setShowError(true);
-      setErrorMessage("Debes ingresar una fecha y hora válida.");
       return;
     }
 
