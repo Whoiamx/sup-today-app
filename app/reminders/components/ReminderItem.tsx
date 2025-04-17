@@ -1,7 +1,7 @@
 import { APIResults } from "@/app/interfaces/type";
 import { useNotes } from "@/app/store/notes";
 import { ButtonEdit } from "@/app/ui/ButtonEdit";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
 interface Props {
@@ -10,21 +10,22 @@ interface Props {
 
 export const ReminderItem = ({ data }: Props) => {
   const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
-  const editReminder = useNotes((state) => state.updateReminder);
   const deleteReminder = useNotes((state) => state.deleteOneReminder);
+
+  const updateReminderToDone = useNotes((state) => state.updateToDoneReminder);
 
   const handleCheckButton = (id?: number) => {
     if (id === undefined) return;
 
-    setCheckedItems((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+    // Togglear el estado de "checked"
+    setCheckedItems((prev) => {
+      const newCheckedItems = { ...prev, [id]: !prev[id] };
+
+      updateReminderToDone(id, newCheckedItems[id]);
+
+      return newCheckedItems;
+    });
   };
-
-  //TODO: FUNCION QUE DE COMO TERMINADA LA TAREA/RECORDATORIO
-  const handleDoneTasks = async (e: FormEvent<HTMLFormElement>) => {};
-
   const handleDeleteReminder = (id: number) => {
     deleteReminder(id);
   };
