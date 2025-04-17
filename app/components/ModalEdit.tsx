@@ -21,7 +21,7 @@ export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
 
   const [secondTitle, setSecondTitle] = useState("");
   const [secondDescription, setSecondDescription] = useState("");
-  const [isImportantNow, setIsImportantNow] = useState();
+  const [isImportantNow, setIsImportantNow] = useState(false);
   const [newremindAt, setNewRemindAt] = useState(new Date());
 
   const editReminder = useNotes((state) => state.updateReminder);
@@ -103,17 +103,17 @@ export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
             />
           </div>
 
-          <div className="flex justify-end gap-2 mt-6">
+          <div className="flex justify-between gap-4 mt-6 flex-wrap">
             <button
               type="button"
-              className="px-4 py-2 text-gray-600 rounded-lg hover:bg-gray-100 transition"
+              className="px-4 py-2 text-gray-600 rounded-lg hover:bg-gray-100 transition w-full sm:w-auto"
               onClick={() => setShowEditModal(false)}
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
             >
               Guardar
             </button>

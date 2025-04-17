@@ -13,14 +13,6 @@ export const Modal = ({ setShowModal }: Props) => {
 
   const createNewReminder = useNotes((state) => state.createReminder);
 
-  //TODO: AJUSTAR LA NOTIFICACION QUE APARECE AL AGREGAR UN NUEVO RECORDATORIO
-  // const handleNotification = () => {
-  //   setShowNotification(true);
-  //   setTimeout(() => {
-  //     setShowNotification(false);
-  //   }, 2500);
-  // };
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -35,7 +27,6 @@ export const Modal = ({ setShowModal }: Props) => {
       phone: "11123123",
     });
     setShowModal(false);
-    handleNotification();
   };
 
   return (
@@ -94,17 +85,17 @@ export const Modal = ({ setShowModal }: Props) => {
             />
           </div>
 
-          <div className="flex justify-end gap-2 mt-6">
+          <div className="flex justify-between gap-4 mt-6 flex-wrap">
             <button
               type="button"
               onClick={() => setShowModal(false)} // Cierra el modal al hacer clic en "Cancelar"
-              className="px-4 py-2 text-gray-600 rounded-lg hover:bg-gray-100 transition"
+              className="px-4 py-2 text-gray-600 rounded-lg hover:bg-gray-100 transition w-full sm:w-auto"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
             >
               Guardar
             </button>

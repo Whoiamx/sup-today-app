@@ -5,7 +5,6 @@ import { ReminderCard } from "./ReminderCard";
 import { Modal } from "@/app/components/Modal";
 import { ReminderTodayHome } from "./ReminderTodayHome";
 import { useNotes } from "../../store/notes";
-import { NotificationGood } from "@/app/ui/NotificationGood";
 
 export const ReminderCategoryCards = () => {
   const allNotes = useNotes((state) => state.allNotes.length);
@@ -16,48 +15,54 @@ export const ReminderCategoryCards = () => {
 
   return (
     <>
-      <div className="min-h-screen flex items-start justify-center pt-10 bg-oliveLight">
-        <div className="grid grid-cols-2 gap-x-9 gap-y-7 w-[90vw] max-w-[600px]">
-          <ReminderCard
-            title="Hoy"
-            count={todayNotes}
-            color="blue"
-            route="today"
-          />
-          <ReminderCard
-            title="Importante"
-            count={importantNotes}
-            color="red"
-            route="important"
-          />
-          <ReminderCard
-            title="Todo"
-            count={allNotes}
-            color="gray"
-            route="all"
-          />
+      <div className="min-h-screen flex items-start justify-center pt-10 bg-oliveLight px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-[600px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-9 gap-y-7">
+            <ReminderCard
+              title="Hoy"
+              count={todayNotes}
+              color="blue"
+              route="today"
+            />
+            <ReminderCard
+              title="Importante"
+              count={importantNotes}
+              color="red"
+              route="important"
+            />
+            <ReminderCard
+              title="Todo"
+              count={allNotes}
+              color="gray"
+              route="all"
+            />
+            <ReminderCard
+              title="Terminado"
+              count={doneNotes}
+              color="orange"
+              route="done"
+            />
+          </div>
 
-          <ReminderCard
-            title="Terminado"
-            count={doneNotes}
-            color="orange"
-            route="done"
-          />
+          <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <button
+              onClick={() => setShowModal((prevState) => !prevState)}
+              className="bg-blue-600 text-white text-base sm:text-lg font-semibold px-6 py-3 rounded-xl hover:bg-blue-700 transition w-full sm:w-[260px] shadow"
+            >
+              + Agregar recordatorio
+            </button>
+          </div>
 
-          <button
-            onClick={() => setShowModal((prevState) => !prevState)}
-            className="col-span-2 bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition"
-          >
-            + Agregar recordatorio
-          </button>
-          <h3 className="text-black text-2xl text-nowrap">
-            Tus recordatorios de <span className="text-red-500">hoy</span>
-          </h3>
-          <ReminderTodayHome />
-
-          {showModal && <Modal setShowModal={setShowModal} />}
+          <div className="mt-8">
+            <h3 className="text-black text-2xl sm:text-3xl font-semibold whitespace-nowrap">
+              Tus recordatorios de <span className="text-red-500">hoy</span>
+            </h3>
+            <ReminderTodayHome />
+          </div>
         </div>
       </div>
+
+      {showModal && <Modal setShowModal={setShowModal} />}
     </>
   );
 };

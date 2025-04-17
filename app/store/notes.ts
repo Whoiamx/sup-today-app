@@ -141,8 +141,8 @@ export const useNotes = create<State>()(
       },
     }),
     {
-      name: "reminder-storage", // Nombre de la clave en localStorage
-      storage: createJSONStorage(() => localStorage), // Usamos createJSONStorage para envolver localStorage
+      name: "reminder-storage",
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );
