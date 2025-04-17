@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNotes } from "../store/notes";
 import { APIResults } from "../interfaces/type";
+import { NotificationValidation } from "../ui/NotificationValidation";
 
 interface Props {
   setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,6 +15,9 @@ export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
   const [isImportantNow, setIsImportantNow] = useState(false);
   const [newremindAt, setNewRemindAt] = useState(new Date());
   const editReminder = useNotes((state) => state.updateReminder);
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     const reminder = data.find((item) => item.id === id);
@@ -29,7 +33,27 @@ export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
 
   const handleEdit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(id);
+    if (!secondTitle.trim()) {
+      setShowError(true);
+      setErrorMessage("El título del recordatorio es obligatorio.");
+      return;
+    }
+
+    if (!secondDescription.trim()) {
+      setShowError(true);
+      setErrorMessage("La descripción del recordatorio es obligatoria.");
+      return;
+    }
+
+    if (isNaN(newremindAt.getTime())) {
+      setShowError(true);
+      setErrorMessage("Debes ingresar una fecha y hora válida.");
+      return;
+    }
+
+    setShowError(false);
+    setErrorMessage("");
+
     editReminder(id, {
       title: secondTitle,
       description: secondDescription,
@@ -42,6 +66,12 @@ export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+      {errorMessage && (
+        <NotificationValidation
+          errorMessage={errorMessage}
+          setShowError={setShowError}
+        />
+      )}
       <div className="bg-white rounded-2xl w-full max-w-lg p-6 shadow-lg relative">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
           Editar recordatorio

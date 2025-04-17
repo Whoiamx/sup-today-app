@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useNotes } from "../store/notes";
+import { NotificationValidation } from "../ui/NotificationValidation";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,11 +12,34 @@ export const Modal = ({ setShowModal, setShowNotification }: Props) => {
   const [description, setDescription] = useState("");
   const [important, setImportant] = useState(false);
   const [remindAt, setRemindAt] = useState(new Date());
-
   const createNewReminder = useNotes((state) => state.createReminder);
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showError, setShowError] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!title.trim()) {
+      setShowError(true);
+      setErrorMessage("El título del recordatorio es obligatorio.");
+      return;
+    }
+
+    if (!description.trim()) {
+      setShowError(true);
+      setErrorMessage("La descripción del recordatorio es obligatoria.");
+      return;
+    }
+
+    if (isNaN(remindAt.getTime())) {
+      setShowError(true);
+      setErrorMessage("Debes ingresar una fecha y hora válida.");
+      return;
+    }
+
+    setShowError(false);
+    setErrorMessage("");
 
     createNewReminder({
       title,
@@ -32,6 +56,12 @@ export const Modal = ({ setShowModal, setShowNotification }: Props) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+      {showError && (
+        <NotificationValidation
+          errorMessage={errorMessage}
+          setShowError={setShowError}
+        />
+      )}
       <div className="bg-white rounded-2xl w-full max-w-lg p-6 shadow-lg relative">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
           Agregar recordatorio
