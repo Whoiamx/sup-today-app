@@ -4,7 +4,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "What's up today?",
+  title: "What's up today? - Tus recordatorios en un solo lugar",
   description: "Nunca mas te olvides tus pendientes del dia",
   icons: {
     icon: "./favicon.ico",

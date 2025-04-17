@@ -14,7 +14,10 @@ export const ButtonAddNote = () => {
       </button>
 
       {showModal && (
-        <Modal setShowModal={setShowModal} setShowNotification={[]} />
+        <Modal
+          setShowModal={setShowModal}
+          setShowNotification={setShowNotification}
+        />
       )}
     </div>
   );

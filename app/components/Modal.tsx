@@ -3,9 +3,10 @@ import { useNotes } from "../store/notes";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowNotification?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Modal = ({ setShowModal }: Props) => {
+export const Modal = ({ setShowModal, setShowNotification }: Props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [important, setImportant] = useState(false);
@@ -88,7 +89,7 @@ export const Modal = ({ setShowModal }: Props) => {
           <div className="flex justify-between gap-4 mt-6 flex-wrap">
             <button
               type="button"
-              onClick={() => setShowModal(false)} // Cierra el modal al hacer clic en "Cancelar"
+              onClick={() => setShowModal(false)}
               className="px-4 py-2 text-gray-600 rounded-lg hover:bg-gray-100 transition w-full sm:w-auto"
             >
               Cancelar
@@ -96,6 +97,7 @@ export const Modal = ({ setShowModal }: Props) => {
             <button
               type="submit"
               className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
+              onClick={() => setShowNotification((prevState) => !prevState)}
             >
               Guardar
             </button>
@@ -103,7 +105,7 @@ export const Modal = ({ setShowModal }: Props) => {
         </form>
 
         <button
-          onClick={() => setShowModal(false)} // Cierra el modal al hacer clic en el icono de cerrar
+          onClick={() => setShowModal(false)}
           className="absolute top-3 right-4 text-gray-400 hover:text-gray-600 text-xl"
         >
           &times;

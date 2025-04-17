@@ -7,6 +7,7 @@ interface State {
   todayNotes: [];
   importantNotes: [];
   doneNotes: [];
+
   gettingData: () => void;
   gettingTodayData: () => void;
   createReminder: (note: ReminderNote) => void;
@@ -25,6 +26,7 @@ export const useNotes = create<State>()(
       todayNotes: [],
       importantNotes: [],
       doneNotes: [],
+
       gettingData: async () => {
         const res = await fetch("/api/reminder");
         const data = await res.json();

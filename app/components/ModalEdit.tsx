@@ -9,6 +9,12 @@ interface Props {
 }
 
 export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
+  const [secondTitle, setSecondTitle] = useState("");
+  const [secondDescription, setSecondDescription] = useState("");
+  const [isImportantNow, setIsImportantNow] = useState(false);
+  const [newremindAt, setNewRemindAt] = useState(new Date());
+  const editReminder = useNotes((state) => state.updateReminder);
+
   useEffect(() => {
     const reminder = data.find((item) => item.id === id);
     if (reminder) {
@@ -19,12 +25,7 @@ export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
     }
   }, [id, data]);
 
-  const [secondTitle, setSecondTitle] = useState("");
-  const [secondDescription, setSecondDescription] = useState("");
-  const [isImportantNow, setIsImportantNow] = useState(false);
-  const [newremindAt, setNewRemindAt] = useState(new Date());
-
-  const editReminder = useNotes((state) => state.updateReminder);
+  const handleNotification = () => {};
 
   const handleEdit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -114,6 +115,7 @@ export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
             <button
               type="submit"
               className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
+              onClick={handleNotification}
             >
               Guardar
             </button>

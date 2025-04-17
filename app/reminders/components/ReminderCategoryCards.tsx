@@ -6,7 +6,11 @@ import { Modal } from "@/app/components/Modal";
 import { ReminderTodayHome } from "./ReminderTodayHome";
 import { useNotes } from "../../store/notes";
 
-export const ReminderCategoryCards = () => {
+interface Props {
+  setShowNotification: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const ReminderCategoryCards = ({ setShowNotification }: Props) => {
   const allNotes = useNotes((state) => state.allNotes.length);
   const todayNotes = useNotes((state) => state.todayNotes.length);
   const doneNotes = useNotes((state) => state.doneNotes.length);
@@ -62,7 +66,12 @@ export const ReminderCategoryCards = () => {
         </div>
       </div>
 
-      {showModal && <Modal setShowModal={setShowModal} />}
+      {showModal && (
+        <Modal
+          setShowModal={setShowModal}
+          setShowNotification={setShowNotification}
+        />
+      )}
     </>
   );
 };
