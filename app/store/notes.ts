@@ -1,18 +1,18 @@
 import { create } from "zustand";
-import { ReminderNote } from "../interfaces/type";
+import { NewReminderNote, ReminderNote } from "../interfaces/type";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 interface State {
   allNotes: ReminderNote[];
-  todayNotes: [];
-  importantNotes: [];
-  doneNotes: [];
+  todayNotes: ReminderNote[];
+  importantNotes: ReminderNote[];
+  doneNotes: ReminderNote[];
 
   gettingData: () => void;
   gettingTodayData: () => void;
-  createReminder: (note: ReminderNote) => void;
+  createReminder: (note: NewReminderNote) => void;
   gettingImportantData: () => void;
-  updateReminder: (id: number, updateData: ReminderNote) => void;
+  updateReminder: (id: number, updateData: NewReminderNote) => void;
   gettingOneReminderData: (id: number) => void;
   deleteOneReminder: (id: number) => void;
   gettingDoneData: () => void;
@@ -70,7 +70,7 @@ export const useNotes = create<State>()(
         });
       },
 
-      createReminder: async (note: ReminderNote) => {
+      createReminder: async (note: NewReminderNote) => {
         try {
           const res = await fetch("/api/reminder", {
             method: "POST",

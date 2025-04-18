@@ -41,7 +41,8 @@ export const Modal = ({ setShowModal, setShowNotification }: Props) => {
     setShowError(false);
     setErrorMessage("");
 
-    createNewReminder({
+    // Crear un nuevo recordatorio sin el id
+    const newReminder = {
       title,
       description,
       important,
@@ -50,7 +51,10 @@ export const Modal = ({ setShowModal, setShowNotification }: Props) => {
       sendEmail: false,
       sendWhatsApp: false,
       phone: "11123123",
-    });
+    };
+
+    // Llamar la función para crear el nuevo recordatorio
+    createNewReminder(newReminder);
 
     setShowModal(false);
   };
