@@ -51,6 +51,7 @@ export const Modal = ({ setShowModal, setShowNotification }: Props) => {
       sendWhatsApp: false,
       phone: "11123123",
     });
+
     setShowModal(false);
   };
 
@@ -94,7 +95,7 @@ export const Modal = ({ setShowModal, setShowNotification }: Props) => {
 
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600 mb-1">
-              Importante?
+              ¿Importante?
             </label>
             <input
               type="checkbox"
@@ -106,7 +107,7 @@ export const Modal = ({ setShowModal, setShowNotification }: Props) => {
 
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600 mb-1">
-              Recordamelo
+              Recuérdamelo
             </label>
             <input
               type="datetime-local"
@@ -127,7 +128,11 @@ export const Modal = ({ setShowModal, setShowNotification }: Props) => {
             <button
               type="submit"
               className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
-              onClick={() => setShowNotification((prevState) => !prevState)}
+              onClick={() => {
+                if (setShowNotification) {
+                  setShowNotification((prevState) => !prevState);
+                }
+              }}
             >
               Guardar
             </button>

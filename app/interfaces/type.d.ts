@@ -8,7 +8,7 @@ export interface APIResults {
   sendWhatsApp?: boolean;
   remindAt: Date;
   createdAt?: Date;
-  important?: boolean;
+  important: boolean;
   done?: boolean;
 }
 export interface ReminderNote {
