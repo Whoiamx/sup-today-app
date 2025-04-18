@@ -4,9 +4,9 @@ import { NextResponse, NextRequest } from "next/server";
 // ✅ GET: Obtener un recordatorio por ID
 export async function GET(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } } // Se desestructura correctamente
 ) {
-  const { id } = context.params;
+  const { id } = params;
 
   const infoReminder = await prisma.reminder.findUnique({
     where: {
@@ -20,10 +20,10 @@ export async function GET(
 // ✅ PUT: Actualizar un recordatorio por ID
 export async function PUT(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } } // Se desestructura correctamente
 ) {
   try {
-    const { id } = context.params;
+    const { id } = params;
     const { title, description, important, done } = await request.json();
 
     const updated = await prisma.reminder.update({
@@ -50,10 +50,10 @@ export async function PUT(
 // ✅ DELETE: Eliminar un recordatorio por ID
 export async function DELETE(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } } // Se desestructura correctamente
 ) {
   try {
-    const { id } = context.params;
+    const { id } = params;
 
     await prisma.reminder.delete({
       where: {
