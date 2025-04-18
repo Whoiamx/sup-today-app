@@ -1,6 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
 
+// ✅ GET: Obtener recordatorio por ID
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -14,6 +15,7 @@ export async function GET(
   return NextResponse.json(infoReminder);
 }
 
+// ✅ PUT: Actualizar un recordatorio
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -39,12 +41,13 @@ export async function PUT(
   }
 }
 
+// ✅ DELETE: Eliminar un recordatorio por ID
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const deleteReminder = await prisma.reminder.deleteMany({
+    await prisma.reminder.deleteMany({
       where: {
         id: Number(params.id),
       },
