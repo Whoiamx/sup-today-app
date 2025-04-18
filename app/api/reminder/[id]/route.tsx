@@ -4,7 +4,7 @@ import { NextResponse, NextRequest } from "next/server";
 // ✅ GET: Obtener un recordatorio por ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } } // Se desestructura correctamente
+  { params }: { params: { id: string } }
 ) {
   const { id } = params;
 
@@ -20,7 +20,7 @@ export async function GET(
 // ✅ PUT: Actualizar un recordatorio por ID
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } } // Se desestructura correctamente
+  { params }: { params: { id: string } }
 ) {
   try {
     const { id } = params;
@@ -50,7 +50,7 @@ export async function PUT(
 // ✅ DELETE: Eliminar un recordatorio por ID
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } } // Se desestructura correctamente
+  { params }: { params: { id: string } }
 ) {
   try {
     const { id } = params;
