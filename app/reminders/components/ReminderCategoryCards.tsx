@@ -19,9 +19,10 @@ export const ReminderCategoryCards = ({ setShowNotification }: Props) => {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center pt-10 bg-oliveLight px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen flex items-start justify-center pt-10 bg-oliveLight px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-[600px]">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 justify-center items-center">
+          {/* Aplica centrado solo en pantallas pequeñas con 'sm:grid-cols-2' */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:justify-center sm:items-center">
             <ReminderCard
               title="Hoy"
               count={todayNotes}
