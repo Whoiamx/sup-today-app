@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    }
+  ],
+  "build": {
+    "env": {
+      "DATABASE_URL": "your_database_url"
+    },
+    "commands": ["npx prisma generate"]
+  }
+}
