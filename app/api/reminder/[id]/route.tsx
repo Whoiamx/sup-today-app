@@ -1,31 +1,34 @@
 import { prisma } from "@/app/lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
 
-// ✅ GET: Obtener recordatorio por ID
+// ✅ GET: Obtener un recordatorio por ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const infoReminder = await prisma.reminder.findMany({
+  const { id } = context.params;
+
+  const infoReminder = await prisma.reminder.findUnique({
     where: {
-      id: Number(params.id),
+      id: Number(id),
     },
   });
 
   return NextResponse.json(infoReminder);
 }
 
-// ✅ PUT: Actualizar un recordatorio
+// ✅ PUT: Actualizar un recordatorio por ID
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
+    const { id } = context.params;
     const { title, description, important, done } = await request.json();
 
-    const updateReminder = await prisma.reminder.update({
+    const updated = await prisma.reminder.update({
       where: {
-        id: Number(params.id),
+        id: Number(id),
       },
       data: {
         title,
@@ -35,34 +38,31 @@ export async function PUT(
       },
     });
 
-    return NextResponse.json("Se generó correctamente el recordatorio");
+    return NextResponse.json(updated);
   } catch (error) {
-    return NextResponse.json("Surgió un error");
+    return NextResponse.json(
+      { message: "Error al actualizar" },
+      { status: 500 }
+    );
   }
 }
 
 // ✅ DELETE: Eliminar un recordatorio por ID
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
-    await prisma.reminder.deleteMany({
+    const { id } = context.params;
+
+    await prisma.reminder.delete({
       where: {
-        id: Number(params.id),
+        id: Number(id),
       },
     });
 
-    return NextResponse.json(
-      {
-        message: `Se eliminó el registro correctamente`,
-      },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: "Eliminado correctamente" });
   } catch (error) {
-    return NextResponse.json(
-      { message: "Surgió un error terrible" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "Error al eliminar" }, { status: 500 });
   }
 }
