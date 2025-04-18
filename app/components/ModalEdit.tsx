@@ -5,7 +5,7 @@ import { NotificationValidation } from "../ui/NotificationValidation";
 
 interface Props {
   setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
-  id: number;
+  id?: number;
   data: APIResults[];
 }
 
