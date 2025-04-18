@@ -6,6 +6,7 @@ export async function GET(request: Request) {
     const remindersImportant = await prisma.reminder.findMany({
       where: {
         important: true,
+        done: false,
       },
     });
     return NextResponse.json(remindersImportant);

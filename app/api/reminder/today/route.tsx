@@ -22,6 +22,7 @@ export async function GET(request: Request) {
         gte: startOfToday,
         lte: endOfToday,
       },
+      done: false,
     },
     orderBy: { id: "asc" },
   });
