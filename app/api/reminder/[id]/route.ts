@@ -4,11 +4,10 @@ import { NextResponse } from "next/server";
 // ✅ GET: Obtener un recordatorio por ID
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } } // Cambio clave aquí
 ) {
-  const { id } = params;
+  const { id } = context.params; // Accedemos desde context
 
-  // Convertimos el ID a número ya que la base de datos lo requiere como tal
   const reminder = await prisma.reminder.findUnique({
     where: { id: Number(id) },
   });
@@ -26,9 +25,9 @@ export async function GET(
 // ✅ PUT: Actualizar un recordatorio por ID
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } } // Cambio aquí
 ) {
-  const { id } = params;
+  const { id } = context.params; // Accedemos desde context
   const { title, description, important, done } = await request.json();
 
   try {
@@ -46,9 +45,9 @@ export async function PUT(
 // ✅ DELETE: Eliminar un recordatorio por ID
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } } // Cambio aquí
 ) {
-  const { id } = params;
+  const { id } = context.params; // Accedemos desde context
 
   try {
     await prisma.reminder.delete({
