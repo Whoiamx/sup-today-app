@@ -33,6 +33,14 @@ export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
 
   const handleEdit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Validar que el id no sea undefined
+    if (typeof id !== "number") {
+      setShowError(true);
+      setErrorMessage("Error interno: ID no válido.");
+      return;
+    }
+
     if (!secondTitle.trim()) {
       setShowError(true);
       setErrorMessage("El título del recordatorio es obligatorio.");
@@ -48,6 +56,7 @@ export const ModalEdit = ({ setShowEditModal, id, data }: Props) => {
     setShowError(false);
     setErrorMessage("");
 
+    // Llamada a la función de actualización
     editReminder(id, {
       title: secondTitle,
       description: secondDescription,

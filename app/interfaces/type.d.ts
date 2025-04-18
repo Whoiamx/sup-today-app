@@ -1,5 +1,5 @@
 export interface APIResults {
-  id?: number;
+  id: number;
   title: string;
   description: string;
   email?: string;
