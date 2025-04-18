@@ -5,7 +5,7 @@ interface Params {
   params: { id: string };
 }
 
-export async function PUT(request: Request, { params }: Params) {
+export async function PUT(request: NextRequest, { params }: Params) {
   try {
     const updateReminderToDone = await prisma.reminder.update({
       where: {
@@ -16,8 +16,13 @@ export async function PUT(request: Request, { params }: Params) {
       },
     });
 
-    NextResponse.json(updateReminderToDone);
+    // Return the JSON response
+    return NextResponse.json(updateReminderToDone);
   } catch (error) {
-    return NextResponse.json({ message: error });
+    // Return error message with status code 500
+    return NextResponse.json(
+      { message: (error as Error).message },
+      { status: 500 }
+    );
   }
 }
