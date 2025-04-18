@@ -10,7 +10,7 @@ export async function GET(
 
   const infoReminder = await prisma.reminder.findUnique({
     where: {
-      id: Number(id),
+      id: Number(id), // Convertimos el id a número
     },
   });
 
@@ -28,7 +28,7 @@ export async function PUT(
 
     const updated = await prisma.reminder.update({
       where: {
-        id: Number(id),
+        id: Number(id), // Convertimos el id a número
       },
       data: {
         title,
@@ -57,7 +57,7 @@ export async function DELETE(
 
     await prisma.reminder.delete({
       where: {
-        id: Number(id),
+        id: Number(id), // Convertimos el id a número
       },
     });
 
