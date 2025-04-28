@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Header from "./components/Header";
+
 import { ReminderCategoryCards } from "./reminders/components/ReminderCategoryCards";
 import { NotificationGood } from "./ui/NotificationGood";
+import Header from "./components/Header";
 
 export default function Home() {
   const [showNotification, setShowNotification] = useState(false);
@@ -13,6 +14,7 @@ export default function Home() {
     <>
       <Header />
       <ReminderCategoryCards setShowNotification={setShowNotification} />
+
       {showNotification && (
         <NotificationGood setShowNotification={setShowNotification} />
       )}

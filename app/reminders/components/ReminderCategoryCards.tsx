@@ -21,7 +21,6 @@ export const ReminderCategoryCards = ({ setShowNotification }: Props) => {
     <>
       <div className="min-h-screen flex items-start justify-center pt-10 bg-oliveLight px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-[600px]">
-          {/* Grid con centrado en móvil y alineado a la izquierda en sm+ */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-9 gap-y-7 justify-center sm:justify-start">
             <ReminderCard
               title="Hoy"
